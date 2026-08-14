@@ -23,10 +23,11 @@ services:
           property: connectionString
 
   # --- Frontend (Vue, site statique) ---
-  - type: web
+  - type: pss
+    #type: web
     name: familytask-frontend
     runtime: static
-    plan: free
+    #plan: free
     rootDir: frontend
     # VITE_API_URL doit être injectée AVANT "npm run build" (Vite la fige
     # dans le code au moment du build, pas au moment où le site est servi).
