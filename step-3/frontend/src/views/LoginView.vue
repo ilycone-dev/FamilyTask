@@ -17,7 +17,16 @@ async function submit() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ email: email.value, password: password.value }),
     })
-    if (!res.ok) throw new Error('Identifiants invalides')
+    if (!res.ok) {
+      let message = `Identifiants invalides (code ${res.status})`
+      try {
+        const data = await res.json()
+        if (data.detail) message = data.detail
+      } catch {
+        // la réponse n'était pas du JSON
+      }
+      throw new Error(message)
+    }
     const data = await res.json()
     saveToken(data.token)
     await fetchUser()

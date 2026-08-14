@@ -319,6 +319,42 @@ button::before {
 button:hover { filter: brightness(1.1); box-shadow: 0 8px 22px rgba(16, 185, 129, 0.4); }
 button:active { transform: translateY(1px); }
 
+/* Un bouton seul dans une carte (Se connecter, Créer, Créer un membre...)
+   n'est pas dans une .row : on le centre au lieu de le laisser collé à gauche. */
+.card > button {
+  display: block;
+  width: fit-content;
+  min-width: 160px;
+  margin: 14px auto 0;
+}
+
+/* Sélecteur à deux options (ex: Nouvelle famille / Rejoindre une famille) —
+   volontairement discret, pour ne pas concurrencer le bouton d'action principal. */
+.mode-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 6px;
+}
+.mode-toggle button {
+  flex: 1;
+  background: none;
+  box-shadow: none;
+  color: var(--muted);
+  font-size: 13px;
+  padding: 8px 6px;
+  border-radius: 9px;
+}
+.mode-toggle button::before { content: none; }
+.mode-toggle button.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 /* ---------- Member Picker ---------- */
 
 .member-picker { display: flex; gap: 10px; overflow-x: auto; padding: 2px 2px 6px; }
