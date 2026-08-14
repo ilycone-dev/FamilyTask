@@ -33,7 +33,8 @@ services:
     rootDir: step-3/frontend
     # VITE_API_URL doit être injectée AVANT "npm run build" (Vite la fige
     # dans le code au moment du build, pas au moment où le site est servi).
-    buildCommand: npm install && VITE_API_URL="$API_HOST" npm run build
+    #buildCommand: npm install && VITE_API_URL="$API_HOST" npm run build
+    buildCommand: npm install && chmod +x node_modules/.bin/* && VITE_API_URL="$API_HOST" npm run build
     staticPublishPath: dist
     envVars:
       # RENDER_EXTERNAL_URL est l'URL publique complète (https://...onrender.com)
