@@ -48,14 +48,26 @@ function doLogout() {
   <div class="viewport">
     <div class="phone-frame">
       <header class="topbar" v-if="authState.user">
-        <div class="topbar-left">
-          <Avatar :name="userName" :size="38" />
-          <div>
+        <svg class="sparkle sparkle-1" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4Z" /></svg>
+        <svg class="sparkle sparkle-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4Z" /></svg>
+        <svg class="sparkle sparkle-3" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4Z" /></svg>
+
+        <div class="topbar-side topbar-left">
+          <Avatar :name="userName" :size="34" />
+        </div>
+
+        <div class="brand-lockup">
+          <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11.5 12 4l9 7.5" />
+            <path d="M5.5 9.8V20a1 1 0 0 0 1 1H10v-5.5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1V21h3.5a1 1 0 0 0 1-1V9.8" />
+          </svg>
+          <div class="brand-text">
             <h1>FamilyTask</h1>
             <p class="topbar-subtitle">Bonjour {{ userName }}</p>
           </div>
         </div>
-        <div class="topbar-actions">
+
+        <div class="topbar-side topbar-actions">
           <button class="icon-btn" type="button" @click="toggleTheme" :title="isDark ? 'Mode clair' : 'Mode sombre'">
             <svg v-if="isDark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" /></svg>
             <svg v-else viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" /></svg>
@@ -66,8 +78,16 @@ function doLogout() {
         </div>
       </header>
       <header class="topbar" v-else>
-        <div class="topbar-left">
-          <h1>FamilyTask</h1>
+        <svg class="sparkle sparkle-1" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4Z" /></svg>
+        <svg class="sparkle sparkle-2" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6L19 9l-5.2 1.4L12 16l-1.8-5.6L5 9l5.2-1.4Z" /></svg>
+        <div class="brand-lockup" style="grid-column: 1 / -1;">
+          <svg class="brand-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 11.5 12 4l9 7.5" />
+            <path d="M5.5 9.8V20a1 1 0 0 0 1 1H10v-5.5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1V21h3.5a1 1 0 0 0 1-1V9.8" />
+          </svg>
+          <div class="brand-text">
+            <h1>FamilyTask</h1>
+          </div>
         </div>
       </header>
 
