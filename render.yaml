@@ -12,7 +12,7 @@ services:
     name: familytask-backend
     runtime: python
     plan: free
-    rootDir: backend
+    #rootDir: backend
     rootDir: step-3/backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
@@ -29,7 +29,7 @@ services:
     name: familytask-frontend
     runtime: static
     #plan: free
-    rootDir: frontend
+    #rootDir: frontend
     rootDir: step-3/frontend
     # VITE_API_URL doit être injectée AVANT "npm run build" (Vite la fige
     # dans le code au moment du build, pas au moment où le site est servi).
