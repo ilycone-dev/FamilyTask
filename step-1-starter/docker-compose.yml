@@ -1,0 +1,63 @@
+version: "3.7"
+
+services:
+  frontend:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "5173:5173"
+    security_opt:
+      - seccomp:unconfined
+    command: sh -c "npm install && npm run dev -- --host"
+    depends_on:
+      - backend
+
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - "8000:8000"
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      DATABASE_URL: postgresql://familytask:familytask@db:5432/familytask
+      OLLAMA_URL: http://ai:11434
+      OLLAMA_MODEL: qwen2.5:3b
+    depends_on:
+      - db
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: familytask
+      POSTGRES_PASSWORD: familytask
+      POSTGRES_DB: familytask
+    security_opt:
+      - seccomp:unconfined
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+# ---------------------------------------------------------------------------
+# ÉTAPE 2 DE L'INSTALLATION (à faire APRÈS que les 3 conteneurs ci-dessus
+# tournent). Ollama est l'IA qui vivra dans l'app : son image est lourde, on la
+# télécharge séparément pour ne pas bloquer le premier lancement.
+#
+# Ce service est temporairement dÃ©sactivÃ© dans Docker Toolbox car l'image
+# ollama/ollama tente de crÃ©er des threads et tombe sur une erreur
+# "pthread_create failed: Operation not permitted".
+# Pour le remettre, retire ces commentaires.
+#
+#  ai:
+#    image: ollama/ollama
+#    security_opt:
+#      - seccomp:unconfined
+#    volumes:
+#      - ollama:/root/.ollama
+#
+volumes:
+  pgdata:
+  ollama:
