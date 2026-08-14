@@ -26,16 +26,7 @@ async function submit() {
         lien: lien.value,
       }),
     })
-    if (!res.ok) {
-      let message = `Impossible de créer la famille (code ${res.status})`
-      try {
-        const data = await res.json()
-        if (data.detail) message = data.detail
-      } catch {
-        // la réponse n'était pas du JSON (ex: erreur réseau/serveur brute)
-      }
-      throw new Error(message)
-    }
+    if (!res.ok) throw new Error('Impossible de créer la famille')
     const data = await res.json()
     saveToken(data.token)
     await fetchUser()
