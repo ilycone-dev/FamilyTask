@@ -4,14 +4,14 @@
 
 databases:
   - name: familytask-db
-    plan: starter
+    #plan: starter
 
 services:
   # --- Backend (FastAPI) ---
   - type: web
     name: familytask-backend
     runtime: python
-    plan: starter
+    #plan: starter
     rootDir: backend
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
@@ -26,7 +26,7 @@ services:
   - type: web
     name: familytask-frontend
     runtime: static
-    plan: starter
+    #plan: starter
     rootDir: frontend
     # VITE_API_URL doit être injectée AVANT "npm run build" (Vite la fige
     # dans le code au moment du build, pas au moment où le site est servi).
